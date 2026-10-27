@@ -47,3 +47,4 @@ next-env.d.ts
 
 # Allow example env
 !.env.example
+*.db*
