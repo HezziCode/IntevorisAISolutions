@@ -96,6 +96,7 @@ export default function Home() {
       }
 
       setFormSuccess(`Your enquiry has been submitted successfully! (Reference ID: ${data.id.slice(0, 8)})`);
+      setTimeout(() => setFormSuccess(null), 5000);
       setFormName('');
       setFormEmail('');
       setFormMessage('');
@@ -234,7 +235,11 @@ export default function Home() {
                 Customer Portal (Form)
               </button>
               <button
-                onClick={() => setActiveTab('dashboard')}
+                onClick={() => {
+                  setActiveTab('dashboard');
+                  setFormSuccess(null);
+                  setFormError(null);
+                }}
                 className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors cursor-pointer ${
                   activeTab === 'dashboard'
                     ? 'bg-indigo-600 text-white shadow-xs'
@@ -283,7 +288,11 @@ export default function Home() {
                   <p className="mt-1">{formSuccess}</p>
                   <button
                     type="button"
-                    onClick={() => setActiveTab('dashboard')}
+                    onClick={() => {
+                      setActiveTab('dashboard');
+                      setFormSuccess(null);
+                      setFormError(null);
+                    }}
                     className="mt-3 text-xs font-semibold text-emerald-900 underline hover:text-emerald-700 cursor-pointer"
                   >
                     View in Staff Dashboard &rarr;
