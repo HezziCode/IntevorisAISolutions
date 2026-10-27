@@ -108,3 +108,11 @@ export function updateCategorization(
   const info = stmt.run(category, state, id);
   return Number(info.changes) > 0;
 }
+
+// 6. Delete an enquiry by ID
+export function deleteEnquiry(id: string): boolean {
+  const db = getDb();
+  const stmt = db.prepare(`DELETE FROM enquiries WHERE id = ?`);
+  const info = stmt.run(id);
+  return Number(info.changes) > 0;
+}

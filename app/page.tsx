@@ -163,6 +163,20 @@ export default function Home() {
     }
   };
 
+  // Delete Enquiry
+  const handleDeleteEnquiry = async (id: string) => {
+    if (!window.confirm('Are you sure you want to delete this enquiry?')) return;
+    try {
+      const res = await fetch(`/api/enquiries/${id}`, { method: 'DELETE' });
+      if (!res.ok) throw new Error('Failed to delete');
+      setEnquiries(prev => prev.filter(item => item.id !== id));
+      if (selectedEnquiry?.id === id) setSelectedEnquiry(null);
+      showToast('Enquiry deleted successfully', 'success');
+    } catch {
+      showToast('Could not delete enquiry', 'error');
+    }
+  };
+
   // Category Badge Colors
   const getCategoryBadge = (category: Category | null, state: string) => {
     if (state === 'Failed') {
@@ -574,6 +588,14 @@ export default function Home() {
                               >
                                 View
                               </button>
+
+                              <button
+                                onClick={() => handleDeleteEnquiry(enquiry.id)}
+                                className="px-2.5 py-1 text-xs text-red-600 hover:text-red-700 hover:bg-red-50 rounded-md transition-colors cursor-pointer"
+                                title="Delete enquiry"
+                              >
+                                Delete
+                              </button>
                             </div>
                           </td>
                         </tr>
@@ -647,6 +669,12 @@ export default function Home() {
                   {retryingIds[selectedEnquiry.id] ? 'Retrying...' : 'Retry AI Categorization'}
                 </button>
               )}
+              <button
+                onClick={() => handleDeleteEnquiry(selectedEnquiry.id)}
+                className="px-3 py-1.5 bg-red-50 hover:bg-red-100 text-red-700 text-xs font-semibold rounded-lg transition-colors cursor-pointer mr-auto"
+              >
+                Delete Enquiry
+              </button>
               <button
                 onClick={() => setSelectedEnquiry(null)}
                 className="px-4 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg cursor-pointer"

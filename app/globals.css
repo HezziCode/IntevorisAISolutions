@@ -234,6 +234,10 @@ button:disabled, input:disabled, textarea:disabled, select:disabled {
 .hover\:text-indigo-600:hover { color: #4f46e5; }
 .hover\:text-slate-900:hover { color: #0f172a; }
 .hover\:text-slate-600:hover { color: #475569; }
+.hover\:text-red-700:hover { color: #b91c1c; }
+.hover\:bg-red-50:hover { background-color: #fef2f2; }
+.hover\:bg-red-100:hover { background-color: #fee2e2; }
+.mr-auto { margin-right: auto; }
 .hover\:underline:hover { text-decoration: underline; }
 
 /* Animations */
