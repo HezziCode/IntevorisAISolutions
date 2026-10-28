@@ -19,20 +19,8 @@ Open your browser at **http://localhost:3000**.
 
 ---
 
-## 2. Database Initialization
-
-* **Database Engine**: Persistent SQLite via Node.js built-in `node:sqlite` (`DatabaseSync`).
-* **Initialization**: The database file (`enquiries.db`) and table schema initialize **automatically on first startup**. 
-* **Zero Configuration**: No manual database commands, migrations, Docker containers, or external accounts are required. 
-* To reset the database to an empty state, simply delete `enquiries.db` and refresh the page.
-
----
-
 ## 3. Mock Service Instructions
 
-* **Command to run**: `node mock-ai-service.mjs`
-* **Port & Endpoint**: `POST http://127.0.0.1:8787/categorize`
-* **Payload**: `{"enquiryId": "<id>", "message": "<customer text>"}`
 * **Test Triggers**:
   1. **Success**: `"Please send pricing for your automation service."` $\rightarrow$ returns category `Sales`.
   2. **Temporary Failure**: `"[FAIL_ONCE] I have an invoice question."` $\rightarrow$ returns HTTP 503 on attempt 1, then `Billing` on retry.
